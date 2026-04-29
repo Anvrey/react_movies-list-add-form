@@ -33,7 +33,7 @@ export const TextField: React.FC<Props> = ({
   let errorMessage: string | null = null;
 
   if (touched) {
-    if (required && !value) {
+    if (required && !value.trim()) {
       errorMessage = `${label} is required`;
     } else if (validate) {
       errorMessage = validate(value);

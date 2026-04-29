@@ -3,10 +3,10 @@ import { TextField } from '../TextField';
 import { Movie } from '../../types/Movie';
 
 interface Props {
-  onSubmit: (movie: Movie) => void;
+  onAdd: (movie: Movie) => void;
 }
 
-export const NewMovie: React.FC<Props> = ({ onSubmit }) => {
+export const NewMovie: React.FC<Props> = ({ onAdd }) => {
   // Increase the count after successful form submission
   // to reset touched status of all the `Field`s
   const [count, setCount] = useState(0);
@@ -39,7 +39,7 @@ export const NewMovie: React.FC<Props> = ({ onSubmit }) => {
       return;
     }
 
-    onSubmit({
+    onAdd({
       title,
       description,
       imgUrl,
@@ -102,10 +102,10 @@ export const NewMovie: React.FC<Props> = ({ onSubmit }) => {
             data-cy="submit-button"
             className="button is-link"
             disabled={
-              !title ||
-              !imgUrl ||
-              !imdbUrl ||
-              !imdbId ||
+              !title.trim() ||
+              !imgUrl.trim() ||
+              !imdbUrl.trim() ||
+              !imdbId.trim() ||
               Boolean(validateUrl(imgUrl)) ||
               Boolean(validateUrl(imdbUrl))
             }
